@@ -1,0 +1,467 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Montserrat:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --bg-color: #FEFBE5;
+    --text-color: #373333;
+
+    --font-main: 'Montserrat', sans-serif;
+    --font-accent: 'Instrument Serif', serif;
+
+    --spacing: 20px;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+.container {
+    width: 90%;
+    margin: 0 auto
+}
+
+.site-header {
+    background: transparent;
+    padding: 18px 0;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 18px
+}
+
+.site-footer .container {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0
+}
+
+@media (max-width:600px) {
+    .hero {
+        padding: 48px 0
+    }
+
+    .nav {
+        display: none
+    }
+
+    #signup-form {
+        flex-direction: column
+    }
+}
+
+.uppercase {
+    text-transform: uppercase;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+h1,
+h2,
+h3 {
+    font-family: var(--font-accent);
+    font-weight: 400;
+    font-style: normal;
+}
+
+span {
+    font-family: var(--font-main);
+}
+
+.main-title {
+    font-size: clamp(48px, 12vw, 160px);
+    line-height: 0.95;
+}
+
+/* Базові стилі */
+.first {
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+    display: block;
+}
+
+.hero-inner {
+    padding: 72px 20px 40px 20px;
+    text-align: center
+}
+
+.hero-image {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -8vh;
+    z-index: 8;
+    width: 100%;
+    display: flex;
+    justify-content: center
+}
+
+/* .hero-image img{width:86%;max-width:520px;box-shadow:0 18px 30px rgba(0,0,0,0.18);border-radius:8px} */
+.hero-footer {
+    position: relative;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    margin-top: 18px;
+    z-index: 20;
+    text-align: center
+}
+
+.small-heading {
+    letter-spacing: 2px;
+    font-size: 12px
+}
+
+/* Мобільна версія */
+@media (max-width: 767px) {
+    .features {
+        justify-content: center;
+        /* Центруємо текст */
+    }
+
+    /* Приховуємо дату, залишаємо тільки "swipe..." */
+    .features span:nth-child(2) {
+        display: none;
+    }
+}
+
+/* DETAILS / SECOND SCREEN */
+.signup {
+    min-height: 100vh;
+    padding: 48px 0
+}
+
+.details-grid {
+    display: flex;
+    gap: 18px;
+    align-items: flex-start
+}
+
+.details-left {
+    flex: 1;
+    padding-right: 14px
+}
+
+.details-right {
+    width: 35%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    position: relative;
+    padding-left: 12px
+}
+
+/* Make details-left and details-right overlay each other and span full width */
+.details-grid {
+    position: relative;
+    min-height: 100vh;
+    border: 2px solid violet;
+
+}
+
+.details-left {
+    position: relative;
+    width: 100%;
+    padding: 48px 20px;
+    z-index: 10;
+
+    border: 2px solid red;
+}
+
+.details-right {
+    position: absolute;
+    width: 100%;
+    display: block;
+    z-index: 20;
+    pointer-events: none;
+    top: 0;
+    border: 2px solid blue;
+
+}
+
+/* Stack decorative assets: position absolute and center them so they overlay one another */
+.details-right .decor {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    /* max-width:220px; */
+    width: 100%;
+    pointer-events: none;
+    opacity: 0.98;
+    transition: transform .35s ease, opacity .25s ease;
+}
+
+
+
+/* Layer ordering and slight offsets to show stacked effect anchored on the right */
+.details-right .decor:nth-of-type(1) {
+    z-index: 40;
+    transform: translateY(0px) rotate(-2deg) scale(1);
+}
+
+.details-right .decor:nth-of-type(2) {
+    z-index: 30;
+    transform: translateY(8px) rotate(2deg) scale(.96);
+}
+
+.details-right .decor:nth-of-type(3) {
+    z-index: 20;
+    transform: translateY(16px) rotate(-1deg) scale(.92);
+}
+
+.details-right .decor:nth-of-type(4) {
+    z-index: 10;
+    transform: translateY(24px) rotate(3deg) scale(.88);
+}
+
+/* Layer ordering and slight offsets to show stacked effect */
+.details-right .decor:nth-of-type(1) {
+    z-index: 40;
+    transform: translateX(-50%) translateY(0px) rotate(-2deg) scale(1);
+}
+
+.details-right .decor:nth-of-type(2) {
+    z-index: 30;
+    transform: translateX(-50%) translateY(8px) rotate(2deg) scale(.96);
+}
+
+.details-right .decor:nth-of-type(3) {
+    z-index: 20;
+    transform: translateX(-50%) translateY(16px) rotate(-1deg) scale(.92);
+}
+
+.details-right .decor:nth-of-type(4) {
+    z-index: 10;
+    transform: translateX(-50%) translateY(24px) rotate(3deg) scale(.88);
+}
+
+@media (max-width:420px) {
+    .details-right .decor {
+        max-width: 160px;
+        width: 72%
+    }
+
+    .details-right .decor:nth-of-type(2) {
+        transform: translateX(-50%) translateY(6px) scale(.97)
+    }
+
+    .details-right .decor:nth-of-type(3) {
+        transform: translateX(-50%) translateY(12px) scale(.94)
+    }
+
+    .details-right .decor:nth-of-type(4) {
+        transform: translateX(-50%) translateY(18px) scale(.9)
+    }
+
+    .details-right .decor {
+        max-width: 160px;
+        width: 32%;
+        right: 8%;
+        bottom: 6%
+    }
+
+    .details-right .decor:nth-of-type(2) {
+        transform: translateY(6px) scale(.97)
+    }
+
+    .details-right .decor:nth-of-type(3) {
+        transform: translateY(12px) scale(.94)
+    }
+
+    .details-right .decor:nth-of-type(4) {
+        transform: translateY(18px) scale(.9)
+    }
+}
+
+h2 {
+    font-size: 28px;
+    margin: 18px 0 8px
+}
+
+.muted {
+    font-family: var(--font-main);
+    font-size: 16px;
+    color: #2f2a28
+}
+
+.small {
+    font-size: 14px;
+    color: #504a47
+}
+
+.essentials {
+    list-style: disc;
+    margin-left: 22px;
+    margin-top: 6px
+}
+
+.note {
+    font-size: 13px;
+    color: #4b463f;
+    margin-top: 18px
+}
+
+.side-rail {
+    position: fixed;
+    right: 12px;
+    top: 40vh;
+    transform: rotate(90deg) translateX(50%);
+    transform-origin: right center;
+    font-family: var(--font-accent);
+    letter-spacing: 4px;
+    font-size: 18px;
+    color: #2f2a28;
+    opacity: 0.9
+}
+
+/* small screens tweaks */
+@media (max-width:420px) {
+    .details-grid {
+        flex-direction: column
+    }
+
+    .details-right {
+        width: 100%;
+        order: 2;
+        padding-top: 20px
+    }
+
+    .side-rail {
+        display: none
+    }
+
+    .hero-image img {
+        width: 92%
+    }
+
+    .main-title {
+        font-size: clamp(36px, 14vw, 120px)
+    }
+}
+
+/* Running line (marquee) styles */
+.running-wrap {
+    position: relative;
+    pointer-events: none
+}
+
+.marquee {
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    background: transparent
+}
+
+.marquee__inner {
+    display: inline-flex;
+    gap: 48px;
+    align-items: center;
+    padding: 12px 0;
+    animation: marquee-left 18s linear infinite
+}
+
+.marquee__inner span {
+    font-family: var(--font-accent);
+    font-size: 18px;
+    letter-spacing: 2px;
+    padding: 0 8px;
+    color: var(--text-color)
+}
+
+@keyframes marquee-left {
+    from {
+        transform: translateX(0)
+    }
+
+    to {
+        transform: translateX(-50%)
+    }
+}
+
+/* Vertical marquee - full height on mobile */
+.marquee-vertical {
+    position: fixed;
+    right: 8px;
+    top: 0;
+    height: 100vh;
+    width: auto;
+    display: none;
+    pointer-events: none
+}
+
+.marquee-vertical__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    padding: 24px 6px;
+    animation: marquee-up 12s linear infinite
+}
+
+.marquee-vertical__inner div {
+    font-family: var(--font-accent);
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    font-size: 18px;
+    color: var(--text-color);
+    opacity: 0.9
+}
+
+@keyframes marquee-up {
+    from {
+        transform: translateY(0)
+    }
+
+    to {
+        transform: translateY(-40%)
+    }
+}
+
+/* responsive: show horizontal on wider screens, vertical on small mobile */
+@media (max-width:600px) {
+    .running-line-horizontal {
+        display: none
+    }
+
+    .marquee-vertical {
+        display: block
+    }
+}
+
+@media (min-width:601px) {
+    .running-line-horizontal {
+        display: block
+    }
+
+    .marquee-vertical {
+        display: none
+    }
+}

@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Simple Landing Page</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="container">
+            <div class="uppercase small-heading">invite</div>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO / COVER -->
+        <section class="first">
+            <div class="hero-inner">
+                <h1 class="uppercase main-title">it’s my birthday</h1>
+            </div>
+            <div class="hero-image">
+                <img src="me.png" alt="portrait">
+            </div>
+            <div class="hero-footer">
+                <span class="uppercase">swipe to see details</span>
+            </div>
+        </section>
+
+        <!-- DETAILS / SECOND SCREEN -->
+        <section id="signup" class="signup">
+            <div class="container details-grid">
+                <div class="details-left">
+                    <h2 class="uppercase">time and date</h2>
+                    <p class="muted">15-16 серпня<br><span class="small">о 15 я на вас чекатиму</span></p>
+
+                    <h2 class="uppercase">location</h2>
+                    <p class="muted">Лагуна Поділля</p>
+
+                    <h2 class="uppercase">essentials</h2>
+                    <ul class="essentials">
+                        <li>одяг для купання</li>
+                        <li>шльопки</li>
+                        <li>надувні штуки</li>
+                    </ul>
+
+                    <h2 class="uppercase">dresscode</h2>
+                    <p class="muted">білий + червоний<br><span class="small">але взагалі, як вам буде комфортно</span></p>
+
+                    <h2 class="uppercase">wish list</h2>
+                    <p class="muted">всі мої побажання тут</p>
+
+                    <p class="note">щодо квітів є, нюанс, адже мене не буде з 18 числа у місті, тож звертайтесь до Паши</p>
+                </div>
+                <aside class="details-right">
+                    <!-- decorative illustration or positioned asset -->
+                    <img src="swim-tube.png" alt="decorative" class="decor">
+                    <img src="swimsuit-men.png" alt="decorative" class="decor">
+                    <img src="swimsuit.png" alt="decorative" class="decor">
+                    <img src="flip-flops.png" alt="decorative" class="decor">
+                </aside>
+            </div>
+            <div class="side-rail">DRESSCODE &nbsp; TIME AND DATE &nbsp; ESSENTIALS &nbsp; LOCATION</div>
+        </section>
+    </main>
+    <section aria-hidden="true" class="running-wrap">
+        <!-- Horizontal marquee for desktop -->
+        <div class="running-line-horizontal marquee" aria-hidden="true">
+            <div class="marquee__inner">
+                <span>TIME AND DATE</span>
+                <span>ESSENTIALS</span>
+                <span>LOCATION</span>
+                <span>DRESSCODE</span>
+                <span>TIME AND DATE</span>
+                <span>ESSENTIALS</span>
+                <span>LOCATION</span>
+                <span>DRESSCODE</span>
+            </div>
+        </div>
+
+        <!-- Vertical marquee for mobile -->
+        <div class="running-line-vertical marquee-vertical" aria-hidden="true">
+            <div class="marquee-vertical__inner">
+                <div>TIME AND DATE</div>
+                <div>ESSENTIALS</div>
+                <div>LOCATION</div>
+                <div>DRESSCODE</div>
+                <div>TIME AND DATE</div>
+                <div>ESSENTIALS</div>
+                <div>LOCATION</div>
+                <div>DRESSCODE</div>
+            </div>
+        </div>
+    </section>
+    <footer class="site-footer">
+        <div class="container"> 
+            <span class="uppercase">якщо будеш, тисни на сердечко</span>
+            <img src="heart.png" alt="">
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>
