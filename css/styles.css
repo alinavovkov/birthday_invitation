@@ -8,18 +8,29 @@
 }
 
 :root {
-    --bg-color: #FEFBE5;
+    --bg-color: #f3f2e9;
     --text-color: #373333;
+    --text-color-accent: #9d0208;
 
     --font-main: 'Montserrat', sans-serif;
+    --font-main-italic: 'Montserrat', sans-serif;
+
     --font-accent: 'Instrument Serif', serif;
 
     --spacing: 20px;
 }
 
-html,
+/* html,
 body {
     height: 100%;
+} */
+
+.main {
+    height: 100vh;
+}
+
+.accent-text {
+    color: var(--text-color-accent) !important;
 }
 
 .container {
@@ -46,6 +57,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 15px;
 }
 
 .sr-only {
@@ -69,13 +81,14 @@ body {
         display: none
     }
 
-    #signup-form {
+    #main-container-form {
         flex-direction: column
     }
 }
 
 .uppercase {
     text-transform: uppercase;
+    margin-top: 30px;
 }
 
 body {
@@ -98,6 +111,8 @@ span {
 .main-title {
     font-size: clamp(48px, 12vw, 160px);
     line-height: 0.95;
+        text-transform: uppercase;
+
 }
 
 /* Базові стилі */
@@ -109,7 +124,7 @@ span {
 }
 
 .hero-inner {
-    padding: 72px 20px 40px 20px;
+    padding: 230px 20px 40px 20px;
     text-align: center
 }
 
@@ -117,7 +132,7 @@ span {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    bottom: -8vh;
+    bottom: 0;
     z-index: 8;
     width: 100%;
     display: flex;
@@ -127,12 +142,16 @@ span {
 /* .hero-image img{width:86%;max-width:520px;box-shadow:0 18px 30px rgba(0,0,0,0.18);border-radius:8px} */
 .hero-footer {
     position: relative;
-    left: auto;
-    right: auto;
-    bottom: auto;
-    margin-top: 18px;
+    bottom: -50vh;
     z-index: 20;
-    text-align: center
+    text-align: center;
+    width: 180px;
+    margin: 0 auto;
+
+    span {
+        font-size: 25px;
+        color: var(--bg-color);
+    }
 }
 
 .small-heading {
@@ -154,37 +173,16 @@ span {
 }
 
 /* DETAILS / SECOND SCREEN */
-.signup {
-    min-height: 100vh;
-    padding: 48px 0
+.main-container {
+    min-height: 70vh;
+    padding: 28px 0;
 }
 
 .details-grid {
     display: flex;
     gap: 18px;
-    align-items: flex-start
-}
-
-.details-left {
-    flex: 1;
-    padding-right: 14px
-}
-
-.details-right {
-    width: 35%;
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
+    align-items: flex-start;
     position: relative;
-    padding-left: 12px
-}
-
-/* Make details-left and details-right overlay each other and span full width */
-.details-grid {
-    position: relative;
-    min-height: 100vh;
-    border: 2px solid violet;
-
 }
 
 .details-left {
@@ -192,113 +190,194 @@ span {
     width: 100%;
     padding: 48px 20px;
     z-index: 10;
-
-    border: 2px solid red;
 }
 
-.details-right {
+/* Essentials + decorative collage */
+.essentials-block {
     position: absolute;
-    width: 100%;
-    display: block;
-    z-index: 20;
-    pointer-events: none;
-    top: 0;
-    border: 2px solid blue;
-
+    margin-bottom: 8px;
 }
 
-/* Stack decorative assets: position absolute and center them so they overlay one another */
-.details-right .decor {
+.essentials-content {
+    /* display: flex;
+    align-items: flex-start;
+    gap: 8px; */
+    /* width: fit-content; */
+    /* overflow: hidden; */
+}
+
+.essentials-decor {
+    position: relative;
+    width: 330px;
+    height: 300px !important;
+    overflow: hidden;
+    pointer-events: none;
+    left: 60px;
+    top: -200px;
+}
+
+.essentials-decor .decor {
     position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    bottom: 0;
-    /* max-width:220px; */
-    width: 100%;
+    width: auto;
+    max-width: none;
     pointer-events: none;
-    opacity: 0.98;
-    transition: transform .35s ease, opacity .25s ease;
+    opacity: 0;
+    transform-origin: center center;
+    right: -80px;
 }
 
-
-
-/* Layer ordering and slight offsets to show stacked effect anchored on the right */
-.details-right .decor:nth-of-type(1) {
-    z-index: 40;
-    transform: translateY(0px) rotate(-2deg) scale(1);
+.essentials-block.is-visible .decor--swimsuit {
+    animation:
+        decor-pop-in 0.7s cubic-bezier(0.34, 1.4, 0.64, 1) 0.1s forwards,
+        decor-sway 4.5s ease-in-out 0.85s infinite;
 }
 
-.details-right .decor:nth-of-type(2) {
-    z-index: 30;
-    transform: translateY(8px) rotate(2deg) scale(.96);
+.decor--swimsuit {
+    /* top: -6px;
+    right: 2%; */
+    width: 58%;
+    z-index: 4;
+    --decor-rotate: -8deg;
 }
 
-.details-right .decor:nth-of-type(3) {
-    z-index: 20;
-    transform: translateY(16px) rotate(-1deg) scale(.92);
+.decor--flops {
+    /* top: 38%;
+    left: 0; */
+    width: 52%;
+    z-index: 3;
+    --decor-rotate: 6deg;
 }
 
-.details-right .decor:nth-of-type(4) {
-    z-index: 10;
-    transform: translateY(24px) rotate(3deg) scale(.88);
+.essentials-block.is-visible .decor--flops {
+    animation:
+        decor-pop-in 0.7s cubic-bezier(0.34, 1.4, 0.64, 1) 0.25s forwards,
+        decor-bob 3.8s ease-in-out 1s infinite;
 }
 
-/* Layer ordering and slight offsets to show stacked effect */
-.details-right .decor:nth-of-type(1) {
-    z-index: 40;
-    transform: translateX(-50%) translateY(0px) rotate(-2deg) scale(1);
+.decor--tube {
+    /* top: 22%; */
+    left: 5%;
+    width: 72%;
+    z-index: 2;
+    --decor-rotate: -4deg;
 }
 
-.details-right .decor:nth-of-type(2) {
-    z-index: 30;
-    transform: translateX(-50%) translateY(8px) rotate(2deg) scale(.96);
+.essentials-block.is-visible .decor--tube {
+    animation:
+        decor-pop-in 0.7s cubic-bezier(0.34, 1.4, 0.64, 1) 0.4s forwards,
+        decor-spin 5.2s ease-in-out 1.15s infinite;
 }
 
-.details-right .decor:nth-of-type(3) {
-    z-index: 20;
-    transform: translateX(-50%) translateY(16px) rotate(-1deg) scale(.92);
+.decor--shorts {
+    /* bottom: -4%; */
+    left: 10%;
+    width: 54%;
+    z-index: 1;
+    --decor-rotate: 10deg;
 }
 
-.details-right .decor:nth-of-type(4) {
-    z-index: 10;
-    transform: translateX(-50%) translateY(24px) rotate(3deg) scale(.88);
+.essentials-block.is-visible .decor--shorts {
+    animation:
+        decor-pop-in 0.7s cubic-bezier(0.34, 1.4, 0.64, 1) 0.55s forwards,
+        decor-drift 4.2s ease-in-out 1.3s infinite;
 }
 
-@media (max-width:420px) {
-    .details-right .decor {
-        max-width: 160px;
-        width: 72%
+@keyframes decor-pop-in {
+    from {
+        opacity: 0;
+        transform: translateY(24px) scale(0.85) rotate(calc(var(--decor-rotate, 0deg) - 12deg));
     }
 
-    .details-right .decor:nth-of-type(2) {
-        transform: translateX(-50%) translateY(6px) scale(.97)
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1) rotate(var(--decor-rotate, 0deg));
+    }
+}
+
+@keyframes decor-sway {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(var(--decor-rotate, 0deg));
     }
 
-    .details-right .decor:nth-of-type(3) {
-        transform: translateX(-50%) translateY(12px) scale(.94)
+    50% {
+        transform: translateY(-6px) rotate(calc(var(--decor-rotate, 0deg) + 5deg));
+    }
+}
+
+@keyframes decor-bob {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(var(--decor-rotate, 0deg));
     }
 
-    .details-right .decor:nth-of-type(4) {
-        transform: translateX(-50%) translateY(18px) scale(.9)
+    50% {
+        transform: translateY(-10px) rotate(calc(var(--decor-rotate, 0deg) - 4deg));
+    }
+}
+
+@keyframes decor-spin {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(var(--decor-rotate, 0deg));
     }
 
-    .details-right .decor {
-        max-width: 160px;
-        width: 32%;
-        right: 8%;
-        bottom: 6%
+    50% {
+        transform: translateY(-4px) rotate(calc(var(--decor-rotate, 0deg) + 8deg));
+    }
+}
+
+@keyframes decor-drift {
+
+    0%,
+    100% {
+        transform: translateX(0) rotate(var(--decor-rotate, 0deg));
     }
 
-    .details-right .decor:nth-of-type(2) {
-        transform: translateY(6px) scale(.97)
+    50% {
+        transform: translateX(-6px) rotate(calc(var(--decor-rotate, 0deg) - 6deg));
+    }
+}
+
+@media (min-width: 421px) {
+    /* .essentials-decor {
+        flex: 0 0 34%;
+        height: 240px;
+    } */
+}
+
+@media (max-width: 420px) {
+    .essentials-decor {
+        flex: 0 0 38%;
+        min-width: 110px;
+        height: 190px;
     }
 
-    .details-right .decor:nth-of-type(3) {
-        transform: translateY(12px) scale(.94)
+    .decor--swimsuit {
+        width: 62%;
     }
 
-    .details-right .decor:nth-of-type(4) {
-        transform: translateY(18px) scale(.9)
+    .decor--flops {
+        width: 56%;
+    }
+
+    .decor--tube {
+        width: 78%;
+    }
+
+    .decor--shorts {
+        width: 58%;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .essentials-block.is-visible .decor {
+        opacity: 1;
+        animation: none;
+        transform: rotate(var(--decor-rotate, 0deg));
     }
 }
 
@@ -314,14 +393,32 @@ h2 {
 }
 
 .small {
-    font-size: 14px;
+    font-size: 12px;
     color: #504a47
 }
 
 .essentials {
-    list-style: disc;
-    margin-left: 22px;
-    margin-top: 6px
+    list-style: none;
+    /* Прибираємо стандартні крапки */
+    padding-left: 0;
+}
+
+.essentials li {
+    position: relative;
+    padding-left: 25px;
+    /* Відступ для тексту, щоб тортик не заходив на нього */
+    margin-bottom: 5px;
+    font-size: 16px;
+}
+
+.essentials li::before {
+    content: "🍒";
+    /* Символ, який замінить маркер */
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 18px;
+    /* Розмір вашого тортика */
 }
 
 .note {
@@ -345,20 +442,6 @@ h2 {
 
 /* small screens tweaks */
 @media (max-width:420px) {
-    .details-grid {
-        flex-direction: column
-    }
-
-    .details-right {
-        width: 100%;
-        order: 2;
-        padding-top: 20px
-    }
-
-    .side-rail {
-        display: none
-    }
-
     .hero-image img {
         width: 92%
     }
@@ -368,54 +451,39 @@ h2 {
     }
 }
 
-/* Running line (marquee) styles */
-.running-wrap {
+/* Обгортка, що містить секцію details та футер */
+.content-with-marquee {
     position: relative;
-    pointer-events: none
+    /* Це "якір" для абсолютної лінії */
 }
 
-.marquee {
-    width: 100%;
-    overflow: hidden;
-    white-space: nowrap;
-    background: transparent
-}
-
-.marquee__inner {
-    display: inline-flex;
-    gap: 48px;
-    align-items: center;
-    padding: 12px 0;
-    animation: marquee-left 18s linear infinite
-}
-
-.marquee__inner span {
-    font-family: var(--font-accent);
-    font-size: 18px;
-    letter-spacing: 2px;
-    padding: 0 8px;
-    color: var(--text-color)
-}
-
-@keyframes marquee-left {
-    from {
-        transform: translateX(0)
-    }
-
-    to {
-        transform: translateX(-50%)
-    }
-}
-
-/* Vertical marquee - full height on mobile */
-.marquee-vertical {
-    position: fixed;
-    right: 8px;
+.running-wrap {
+    position: absolute;
+    /* Лінія не вийде за межі .content-with-marquee */
     top: 0;
-    height: 100vh;
-    width: auto;
+    right: 0;
+    height: 100%;
+    /* Займає всю висоту блоку */
+    width: 40px;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.marquee-vertical {
+    position: sticky;
+    top: 0;
+    height: 110vh;
+    width: 100%;
     display: none;
-    pointer-events: none
+    pointer-events: none;
+    overflow: hidden;
+}
+
+/* Приховуємо старий side-rail, який конфліктував */
+@media (max-width: 600px) {
+    .side-rail {
+        display: none !important;
+    }
 }
 
 .marquee-vertical__inner {
@@ -423,7 +491,12 @@ h2 {
     flex-direction: column;
     gap: 28px;
     padding: 24px 6px;
-    animation: marquee-up 12s linear infinite
+    animation: marquee-up 45s linear infinite;
+    /* Збільшіть час (12s -> 15s), щоб рух був повільнішим */
+    will-change: transform;
+    /* Дозволяє браузеру оптимізувати рендеринг */
+    backface-visibility: hidden;
+    /* Запобігає розмиттю тексту під час руху */
 }
 
 .marquee-vertical__inner div {
@@ -437,31 +510,71 @@ h2 {
 
 @keyframes marquee-up {
     from {
-        transform: translateY(0)
+        transform: translateY(0);
     }
 
     to {
-        transform: translateY(-40%)
+        transform: translateY(-50%);
     }
 }
 
-/* responsive: show horizontal on wider screens, vertical on small mobile */
-@media (max-width:600px) {
-    .running-line-horizontal {
-        display: none
-    }
-
+@media (max-width: 600px) {
     .marquee-vertical {
-        display: block
+        display: block;
     }
 }
 
-@media (min-width:601px) {
-    .running-line-horizontal {
-        display: block
+.clickable {
+    cursor: pointer;
+}
+
+.bottom-heart {
+    margin-bottom: 20px;
+}
+
+.top-gap {
+    margin-top: 200px;
+}
+
+.bottom-heart {
+    width: 50px;
+    /* Встановіть потрібний розмір */
+    animation: heartbeat 1.5s ease-in-out infinite;
+    transform-origin: center;
+}
+
+@keyframes heartbeat {
+    0% {
+        transform: scale(1);
     }
 
-    .marquee-vertical {
-        display: none
+    15% {
+        transform: scale(1.2);
+        /* Трішки збільшується */
     }
+
+    30% {
+        transform: scale(1);
+        /* Повертається до норми */
+    }
+
+    45% {
+        transform: scale(1.15);
+        /* Другий, менший удар */
+    }
+
+    60% {
+        transform: scale(1);
+        /* Знову норма */
+    }
+
+    100% {
+        transform: scale(1);
+        /* Пауза до початку нового циклу */
+    }
+}
+
+.bottom-heart:hover {
+    animation: heartbeat 0.7s ease-in-out infinite;
+    cursor: pointer;
 }
