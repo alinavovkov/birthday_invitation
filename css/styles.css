@@ -26,7 +26,7 @@ body {
 } */
 
 .main {
-    height: 90vh;
+    height: 80vh;
 }
 
 .accent-text {
@@ -199,6 +199,7 @@ span {
 .essentials-block {
     position: absolute;
     margin-bottom: 8px;
+        overflow: hidden;
 }
 
 .essentials-content {
@@ -211,7 +212,7 @@ span {
 
 .essentials-decor {
     position: relative;
-    width: 330px;
+    width: 50%;
     height: 300px !important;
     overflow: hidden;
     pointer-events: none;
