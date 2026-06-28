@@ -32,7 +32,10 @@ body {
 .accent-text {
     color: var(--text-color-accent) !important;
 }
-
+.top-layer{
+    position: relative;
+    z-index: 100;
+}
 .container {
     width: 90%;
     margin: 0 auto
