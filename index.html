@@ -8,13 +8,12 @@
     <link rel="shortcut icon" href="favicon.svg" type="image/x-icon">
 </head>
 <body>
-    <header class="site-header">
-        <div class="container">
-            <div class="uppercase small-heading">invitation</div>
-        </div>
-    </header>
-
-    <main>
+    <div class="hero-section">
+        <header class="site-header">
+            <div class="container">
+                <div class="uppercase small-heading">invitation</div>
+            </div>
+        </header>
         <section class="first">
             <div class="hero-bottom">
                 <div class="hero-inner">
@@ -25,15 +24,21 @@
                 </div>
             </div>
             <div class="hero-footer">
-                <span class="uppercase">swipe to see details</span>
-                <div class="arrow-down" aria-hidden="true">
-                    <svg width="24" height="36" viewBox="0 0 24 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <polyline points="4,2 12,10 20,2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </div>
+                <a href="#main-container">
+                    <span class="uppercase">swipe to see details</span>
+                    <div class="arrow-down" aria-hidden="true">
+                        <svg width="24" height="36" viewBox="0 0 24 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <polyline points="4,2 12,10 20,2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <polyline points="4,13 12,21 20,13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <polyline points="4,24 12,32 20,24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                </a>
             </div>
         </section>
+    </div>
 
+    <main>
         <div class="content-with-marquee">
             <section id="main-container" class="main-container">
                 <div class="container details-grid">
