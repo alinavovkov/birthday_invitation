@@ -124,7 +124,7 @@ span {
 
 /* Базові стилі */
 .hero-section {
-    height: 100dvh;
+    height: 100vh;
     scroll-snap-align: start;
     overflow: hidden;
     display: flex;
