@@ -120,14 +120,18 @@ span {
 
 /* Базові стилі */
 .first {
-    min-height: 100vh;
+    min-height: calc(100vh - 80px);
     position: relative;
     overflow: hidden;
     display: block;
 }
 
 .hero-inner {
-    padding: 130px 20px 40px 20px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 420px;
+    width: max-content;
     text-align: center
 }
 
@@ -135,26 +139,51 @@ span {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    bottom: 0;
+    bottom: -20px;
     z-index: 8;
     width: 100%;
     display: flex;
-    justify-content: center
+    justify-content: center;
+
+    & > img {
+        width: 100%;
+        height: 100%;
+    }
 }
 
 /* .hero-image img{width:86%;max-width:520px;box-shadow:0 18px 30px rgba(0,0,0,0.18);border-radius:8px} */
 .hero-footer {
-    position: relative;
-    bottom: -50vh;
+    position: absolute;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
     z-index: 20;
     text-align: center;
     width: 180px;
     margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
 
     span {
         font-size: 25px;
         color: var(--bg-color);
     }
+}
+
+.arrow-down {
+    color: var(--bg-color);
+    animation: bounce 1.6s ease-in-out infinite;
+
+    svg {
+        display: block;
+    }
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(8px); }
 }
 
 .small-heading {
@@ -191,33 +220,27 @@ span {
 .details-left {
     position: relative;
     width: 100%;
-    padding: 48px 20px;
+    padding: 0 20px 48px 20px;
     z-index: 10;
 }
 
 /* Essentials + decorative collage */
 .essentials-block {
-    position: absolute;
     margin-bottom: 8px;
-        overflow: hidden;
-}
-
-.essentials-content {
-    /* display: flex;
-    align-items: flex-start;
-    gap: 8px; */
-    /* width: fit-content; */
-    /* overflow: hidden; */
+    overflow: visible;
+    position: relative;
+    z-index: 10;
 }
 
 .essentials-decor {
-    position: relative;
-    width: 50%;
+    position: absolute;
+    transform: scale(1.2);
+    width: 100%;
     height: 300px !important;
     overflow: hidden;
     pointer-events: none;
-    left: 60px;
-    top: -200px;
+    left: 7px;
+    top: -30px;
 }
 
 .essentials-decor .decor {
@@ -228,6 +251,7 @@ span {
     opacity: 0;
     transform-origin: center center;
     right: -80px;
+    z-index: -1;
 }
 
 .essentials-block.is-visible .decor--swimsuit {
@@ -446,10 +470,6 @@ h2 {
 
 /* small screens tweaks */
 @media (max-width:420px) {
-    .hero-image img {
-        width: 92%
-    }
-
     .main-title {
         font-size: clamp(36px, 14vw, 120px)
     }
@@ -534,10 +554,6 @@ h2 {
 
 .bottom-heart {
     margin-bottom: 20px;
-}
-
-.top-gap {
-    margin-top: 200px;
 }
 
 .bottom-heart {
