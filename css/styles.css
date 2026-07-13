@@ -12,7 +12,7 @@ html {
 }
 
 :root {
-    --bg-color: #f3f2e9;
+    --bg-color: #f6f6f3;
     --text-color: #373333;
     --text-color-accent: #9d0208;
 
@@ -35,6 +35,8 @@ body {
 
 .accent-text {
     color: var(--text-color-accent) !important;
+    /* font-family: var(--font-accent) !important; */
+    /* font-size: 22px !important; */
 }
 .top-layer{
     position: relative;
@@ -95,7 +97,6 @@ body {
 
 .uppercase {
     text-transform: uppercase;
-    margin-top: 30px;
 }
 
 body {
@@ -438,7 +439,9 @@ span {
 
 h2 {
     font-size: 28px;
-    margin: 18px 0 8px
+    margin: 18px 0 8px;
+        margin-top: 30px;
+
 }
 
 .muted {
@@ -464,6 +467,7 @@ h2 {
     /* Відступ для тексту, щоб тортик не заходив на нього */
     margin-bottom: 5px;
     font-size: 16px;
+    font-family: var(--font-main);
 }
 
 .essentials li::before {
@@ -479,7 +483,7 @@ h2 {
 .note {
     font-size: 13px;
     color: #4b463f;
-    margin-top: 18px
+    margin-top: 8px
 }
 
 .side-rail {
@@ -624,4 +628,8 @@ h2 {
 .bottom-heart:hover {
     animation: heartbeat 0.7s ease-in-out infinite;
     cursor: pointer;
+}
+
+.site-footer div span {
+margin-top: 30px;
 }
