@@ -29,6 +29,9 @@ body {
     height: 100%;
 } */
 
+.text-center {
+    text-align: center;
+}
 .main {
     height: 80vh;
 }
