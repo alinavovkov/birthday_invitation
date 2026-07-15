@@ -25,11 +25,20 @@
 
 html {
     scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
 }
 
 body {
     background-color: var(--bg-color);
     color: var(--text-color);
+    overflow-x: hidden;
+}
+
+/* Second snap target so desktop can leave the hero */
+.content-with-marquee {
+    position: relative;
+    scroll-snap-align: start;
+    min-height: 100vh;
 }
 
 h1, h2, h3 {
@@ -148,7 +157,7 @@ span {
     }
 .hero-section {
     height: 100vh;
-    /* scroll-snap-align: start; */
+    scroll-snap-align: start;
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -564,64 +573,184 @@ span {
    7. DESKTOP VERSION (FROM 768px)
    ========================================= */
 @media (min-width: 768px) {
-    /* Add desktop styles here */
-    
-    .side-rail {
-        position: fixed;
-        right: 12px;
-        top: 40vh;
-        transform: rotate(90deg) translateX(50%);
-        transform-origin: right center;
-        font-family: var(--font-accent);
-        letter-spacing: 4px;
-        font-size: 18px;
-        color: #2f2a28;
-        opacity: 0.9;
-    }
-    /* --- 3. DETAILS GRID LAYOUT --- */
-    .main-container {
-        max-width: 1200px; /* Збільшуємо ширину контейнера, щоб було місце для колонок */
+    .container {
+        width: min(1100px, 90%);
         margin: 0 auto;
-        padding: 80px 40px 0;
+    }
+
+    /* --- Hero --- */
+    .hero-image {
+        height: auto;
+        max-height: 85vh;
+        width: min(720px, 55vw);
+        margin-top: -8vw;
+    }
+
+    .hero-footer span {
+        font-size: 18px;
+    }
+
+    .hero-footer {
+        bottom: 40px;
+        width: auto;
+    }
+
+    /* --- Details grid --- */
+    .main-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 80px 40px 40px;
+        position: relative;
+        z-index: 10;
+    }
+
+    .content-with-marquee {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
     }
 
     .details-left {
         width: 100%;
         display: grid;
-        grid-template-columns: 1fr 1fr; /* Робимо рівно 2 колонки */
-        grid-template-rows: auto auto auto; /* 3 ряди (останній для вішлиста) */
-        column-gap: 80px; /* Відстань між колонками */
-        row-gap: 50px;    /* Відстань між рядками по вертикалі */
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto auto;
+        column-gap: 80px;
+        row-gap: 50px;
     }
 
-    /* Розставляємо блоки по клітинках */
     .block-time       { grid-column: 1; grid-row: 1; }
     .block-location   { grid-column: 1; grid-row: 2; }
     .block-essentials { grid-column: 2; grid-row: 1; }
     .block-dresscode  { grid-column: 2; grid-row: 2; }
-    
-    /* Вішлист розтягуємо на дві колонки в самому низу */
-    .block-wishlist   { 
-        grid-column: 1 / span 2; 
-        grid-row: 3; 
-        margin-top: 20px; 
+
+    .block-wishlist {
+        grid-column: 1 / span 2;
+        grid-row: 3;
+        margin-top: 20px;
     }
 
-    /* Прибираємо марджини заголовків, бо тепер Grid керує відступами */
     .info-block h2 {
         margin-top: 0;
+        margin-bottom: 8px;
+        font-size: 36px;
     }
-    /* Example: return horizontal menu, reset specific mobile margins, etc. */
-    /* --- 4. HORIZONTAL MARQUEE (RUNNING TEXT) --- */
-    .running-wrap {
-        width: 100%;
-        height: auto; 
-        top: 40%; /* Відрегулюй це значення (або використай bottom), щоб виставити рядок по вертикалі */
-        transform: translateY(-50%);
-        right: 0;
+
+    .note {
+        font-size: 14px;
+        color: #4b463f;
+        margin-top: 8px;
+        font-family: var(--font-main);
+    }
+
+    .essentials {
+        list-style: none;
+        padding-left: 0;
+    }
+
+    .essentials li {
+        position: relative;
+        padding-left: 28px;
+        margin-bottom: 6px;
+        font-size: 16px;
+        font-family: var(--font-main);
+    }
+
+    .essentials li::before {
+        content: "🍒";
+        position: absolute;
         left: 0;
-        z-index: 20;
+        top: 0;
+        font-size: 18px;
+    }
+
+    .essentials-block {
+        position: relative;
+        overflow: visible;
+    }
+
+    .essentials-content {
+        position: relative;
+    }
+
+    .essentials-decor {
+        position: absolute;
+        right: -40px;
+        top: -20px;
+        width: 220px;
+        height: 260px;
+        pointer-events: none;
+        z-index: 0;
+    }
+
+    .essentials-decor .decor {
+        position: absolute;
+        width: auto;
+        max-width: none;
+        opacity: 0;
+        transform-origin: center center;
+        pointer-events: none;
+    }
+
+    .essentials-block.is-visible .decor--swimsuit {
+        animation: decor-pop-in 0.7s cubic-bezier(0.34, 1.4, 0.64, 1) 0.1s forwards, decor-sway 4.5s ease-in-out 0.85s infinite;
+    }
+
+    .essentials-block.is-visible .decor--flops {
+        animation: decor-pop-in 0.7s cubic-bezier(0.34, 1.4, 0.64, 1) 0.25s forwards, decor-bob 3.8s ease-in-out 1s infinite;
+        right: 0%;
+    }
+
+    .essentials-block.is-visible .decor--tube {
+        animation: decor-pop-in 0.7s cubic-bezier(0.34, 1.4, 0.64, 1) 0.4s forwards, decor-spin 5.2s ease-in-out 1.15s infinite;
+        left: -25%;
+    }
+
+    .essentials-block.is-visible .decor--shorts {
+        animation: decor-pop-in 0.7s cubic-bezier(0.34, 1.4, 0.64, 1) 0.55s forwards, decor-drift 4.2s ease-in-out 1.3s infinite;
+        left: 10%;
+    }
+
+    .decor--swimsuit { right: 0; top: 0; width: 58%; z-index: 4; --decor-rotate: -8deg; }
+    .decor--flops { right: 10%; top: 70px; width: 52%; z-index: 3; --decor-rotate: 6deg; }
+    .decor--tube { left: 5%; top: 40px; width: 72%; z-index: 2; --decor-rotate: -4deg; }
+    .decor--shorts { left: 20%; top: 120px; width: 54%; z-index: 1; --decor-rotate: 10deg; }
+
+    /* --- Footer --- */
+    .site-footer {
+        position: relative;
+        z-index: 10;
+        padding: 40px 0 60px;
+    }
+
+    .site-footer .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 16px;
+    }
+
+    .bottom-heart {
+        width: 56px;
+        animation: heartbeat 1.5s ease-in-out infinite;
+        transform-origin: center;
+    }
+
+    .bottom-heart:hover {
+        animation: heartbeat 0.7s ease-in-out infinite;
+        cursor: pointer;
+    }
+
+    /* --- Horizontal marquee overlay --- */
+    .running-wrap {
+        position: relative;
+        width: 100%;
+        height: auto;
+        z-index: 1;
         overflow: hidden;
+        pointer-events: none;
     }
 
     .marquee-vertical {
@@ -629,26 +758,29 @@ span {
         align-items: center;
         width: 100%;
         position: relative;
+        overflow: hidden;
     }
 
     .marquee-vertical__inner {
         display: flex;
-        flex-direction: row; 
-        width: max-content; 
-        gap: 80px; /* Великий відступ між словами, як на картинці */
+        flex-direction: row;
+        width: max-content;
+        gap: 80px;
         padding: 0 40px;
-        /* Робимо анімацію трохи довшою, бо текст великий */
-        animation: marquee-left 35s linear infinite; 
+        animation: marquee-left 35s linear infinite;
+        will-change: transform;
     }
 
     .marquee-vertical__inner div {
-        writing-mode: horizontal-tb; /* Нормальний горизонтальний текст */
+        writing-mode: horizontal-tb;
         text-orientation: mixed;
-        font-family: var(--font-accent); /* Використовуємо Instrument Serif */
-        font-size: clamp(50px, 6vw, 90px); /* Величезний текст, що адаптується під ширину екрана */
-        text-transform: uppercase; /* Робимо всі літери великими, як на фото */
-        white-space: nowrap; /* Забороняємо перенос слів */
+        font-family: var(--font-accent);
+        font-size: clamp(50px, 6vw, 90px);
+        text-transform: uppercase;
+        white-space: nowrap;
         color: var(--text-color);
-        opacity: 1; /* Робимо непрозорим (або 0.9, якщо хочеш ледь прозорий) */
+        opacity: 0.18;
     }
+
+    .side-rail { display: none; }
 }

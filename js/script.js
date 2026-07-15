@@ -17,17 +17,11 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // 3. Безкінечний бігучий рядок (Marquee)
+    // Дублюємо контент рівно один раз: CSS-анімація зсуває на -50%,
+    // тож двох однакових копій достатньо для безшовного циклу.
     const marquee = document.getElementById('marquee-content');
     if (marquee) {
-        const containerHeight = marquee.parentElement.offsetHeight;
-        let contentHeight = marquee.offsetHeight;
-
-        // Клонуємо контент, щоб заповнити простір
-        while (contentHeight < containerHeight * 2) {
-            const clone = marquee.innerHTML;
-            marquee.innerHTML += clone;
-            contentHeight = marquee.offsetHeight;
-        }
+        marquee.innerHTML += marquee.innerHTML;
     }
 
     // 4. Анімація декору біля essentials при скролі
