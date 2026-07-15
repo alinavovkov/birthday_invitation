@@ -5,29 +5,26 @@ document.addEventListener('DOMContentLoaded', function() {
     const yearEl = document.getElementById('year');
     if (yearEl) yearEl.textContent = y;
 
-    // 2. Плавна прокрутка
+    // 2. Плавна прокрутка (як на main; працює разом зі scroll-snap)
     document.querySelectorAll('a[href^="#"]').forEach(a => {
         a.addEventListener('click', function(e) {
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) { 
-                e.preventDefault(); 
-                target.scrollIntoView({ behavior: 'smooth', block: 'start' }); 
+            const href = this.getAttribute('href');
+            const target = href && document.querySelector(href);
+            if (!target) {
+                return;
             }
+
+            e.preventDefault();
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         });
     });
 
     // 3. Безкінечний бігучий рядок (Marquee)
+    // Дублюємо контент рівно один раз: CSS-анімація зсуває на -50%,
+    // тож двох однакових копій достатньо для безшовного циклу.
     const marquee = document.getElementById('marquee-content');
     if (marquee) {
-        const containerHeight = marquee.parentElement.offsetHeight;
-        let contentHeight = marquee.offsetHeight;
-
-        // Клонуємо контент, щоб заповнити простір
-        while (contentHeight < containerHeight * 2) {
-            const clone = marquee.innerHTML;
-            marquee.innerHTML += clone;
-            contentHeight = marquee.offsetHeight;
-        }
+        marquee.innerHTML += marquee.innerHTML;
     }
 
     // 4. Анімація декору біля essentials при скролі
