@@ -25,13 +25,13 @@
 
 html {
     scroll-snap-type: y mandatory;
-    scroll-behavior: smooth;
 }
 
 body {
     background-color: var(--bg-color);
     color: var(--text-color);
     overflow-x: hidden;
+    max-width: 100%;
 }
 
 /* Second snap target so desktop can leave the hero */
@@ -39,6 +39,8 @@ body {
     position: relative;
     scroll-snap-align: start;
     min-height: 100vh;
+    overflow-x: hidden;
+    max-width: 100%;
 }
 
 h1, h2, h3 {
@@ -148,20 +150,21 @@ span {
 
 /* =========================================
    FIRST SCREEN (HERO) - GLOBAL
+   (matches main; desktop overrides live in min-width: 768px)
    ========================================= */
-       .site-header {
-        background: transparent;
-        padding: 18px 0;
-        margin: 0 auto;
-        text-align: center;
-    }
+.site-header {
+    background: transparent;
+    padding: 18px 0;
+    margin: 0 auto;
+    text-align: center;
+}
+
 .hero-section {
     height: 100vh;
     scroll-snap-align: start;
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    justify-content: center;
 }
 
 .first {
@@ -202,16 +205,15 @@ span {
 .hero-image {
     position: relative;
     z-index: 8;
-    height: 100vh; /* Mobile default */
+    width: 130%;
     display: flex;
     justify-content: center;
-    margin-top: -27vw; /* Mobile default */
+    margin-top: -27vw;
 }
 
 .hero-image > img {
     width: 100%;
     height: 100%;
-    object-fit: contain; /* Keeps image proportions nice */
 }
 
 .hero-footer {
@@ -248,8 +250,8 @@ span {
     animation: bounce 1.6s ease-in-out infinite;
 }
 
-.arrow-down svg { 
-    display: block; 
+.arrow-down svg {
+    display: block;
 }
 
 /* =========================================
@@ -285,104 +287,13 @@ span {
     
     .site-footer div span { margin-top: 30px; }
 
-    /* First screen (Hero) */
-    .hero-section {
-        height: 100vh;
-        scroll-snap-align: start;
-        overflow: hidden;
-        display: flex;
-        flex-direction: column;
-    }
-
-    .first {
-        flex: 1;
-        position: relative;
-        overflow: hidden;
-        display: block;
-    }
-
-    .main-title {
-        font-size: clamp(48px, 12vw, 160px);
-        line-height: 0.95;
-        text-transform: uppercase;
-    }
-
-    .small-heading {
-        letter-spacing: 2px;
-        font-size: 12px;
-    }
-
-    .hero-bottom {
-        position: absolute;
-        bottom: -20px;
-        left: 0;
-        right: 0;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .hero-inner {
-        position: relative;
-        z-index: 7;
-        text-align: center;
-        width: max-content;
-    }
-
-    .hero-image {
-        position: relative;
-        z-index: 8;
-        width: 130%;
-        display: flex;
-        justify-content: center;
-        margin-top: -27vw;
-    }
-
-    .hero-image > img {
-        width: 100%;
-        height: 100%;
-    }
-
-    .hero-footer {
-        position: absolute;
-        bottom: 80px;
-        left: 50%;
-        transform: translateX(-50%);
-        z-index: 20;
-        text-align: center;
-        width: 180px;
-        margin: 0 auto;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 8px;
-    }
-
-    .hero-footer a {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 8px;
-        text-decoration: none;
-        color: inherit;
-    }
-
-    .hero-footer span {
-        font-size: 25px;
-        color: var(--bg-color);
-    }
-
-    .arrow-down {
-        color: var(--bg-color);
-        animation: bounce 1.6s ease-in-out infinite;
-    }
-
-    .arrow-down svg { display: block; }
-
     /* Details and lists */
     .main-container {
         min-height: 70vh;
         padding: 28px 0 0;
+        overflow-x: hidden;
+        width: 100%;
+        max-width: 100%;
     }
 
     .details-grid {
@@ -390,13 +301,17 @@ span {
         gap: 18px;
         align-items: flex-start;
         position: relative;
+        width: 100%;
+        max-width: 100%;
     }
 
     .details-left {
         position: relative;
         width: 100%;
+        max-width: 100%;
         padding: 0 20px 20px 20px;
         z-index: 10;
+        overflow-x: clip;
     }
 
     h2 {
@@ -429,6 +344,8 @@ span {
         font-size: 13px;
         color: #4b463f;
         margin-top: 8px;
+        overflow-wrap: anywhere;
+        word-break: break-word;
     }
 
     /* Decorative elements */
@@ -444,10 +361,11 @@ span {
         transform: scale(0.8);
         width: 100%;
         height: 300px !important;
-        overflow: hidden;
         pointer-events: none;
-        left: 7px;
+        left: 50px;
+        right: 0;
         top: -30px;
+        overflow: hidden;
     }
 
     .essentials-decor .decor {
@@ -457,7 +375,7 @@ span {
         pointer-events: none;
         opacity: 0;
         transform-origin: center center;
-        right: -80px;
+        right: -20px; /* stay mostly inside viewport */
         z-index: -1;
     }
 
@@ -488,6 +406,8 @@ span {
     .content-with-marquee {
         position: relative;
         scroll-snap-align: start;
+        overflow-x: hidden;
+        width: 100%;
     }
 
     .running-wrap {
@@ -496,8 +416,10 @@ span {
         right: 0;
         height: 100%;
         width: 40px;
+        max-width: 40px;
         pointer-events: none;
         z-index: 1;
+        overflow: hidden;
     }
 
     .marquee-vertical {
@@ -578,12 +500,20 @@ span {
         margin: 0 auto;
     }
 
-    /* --- Hero --- */
+    /* --- Hero (desktop only; mobile keeps main-branch look) --- */
+    .hero-section {
+        justify-content: center;
+    }
+
     .hero-image {
         height: auto;
         max-height: 85vh;
         width: min(720px, 55vw);
         margin-top: -8vw;
+    }
+
+    .hero-image > img {
+        object-fit: contain;
     }
 
     .hero-footer span {
@@ -607,7 +537,6 @@ span {
     .content-with-marquee {
         display: flex;
         flex-direction: column;
-        align-items: center;
         justify-content: center;
     }
 

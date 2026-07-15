@@ -5,14 +5,17 @@ document.addEventListener('DOMContentLoaded', function() {
     const yearEl = document.getElementById('year');
     if (yearEl) yearEl.textContent = y;
 
-    // 2. Плавна прокрутка
+    // 2. Плавна прокрутка (як на main; працює разом зі scroll-snap)
     document.querySelectorAll('a[href^="#"]').forEach(a => {
         a.addEventListener('click', function(e) {
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) { 
-                e.preventDefault(); 
-                target.scrollIntoView({ behavior: 'smooth', block: 'start' }); 
+            const href = this.getAttribute('href');
+            const target = href && document.querySelector(href);
+            if (!target) {
+                return;
             }
+
+            e.preventDefault();
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         });
     });
 
